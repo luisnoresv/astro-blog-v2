@@ -1,0 +1,23 @@
+---
+// SSG
+import { getCollection, type CollectionEntry } from "astro:content";
+import MainLayout from "../../layouts/MainLayout.astro";
+
+export async function getStaticPaths() {
+  const allBlogArticles: CollectionEntry<"blog">[] =
+    await getCollection("blog");
+
+  return allBlogArticles.map((article) => ({
+    params: {
+      slug: article.slug,
+    },
+    props: { article },
+  }));
+}
+
+const { article } = Astro.props;
+---
+
+<MainLayout>
+  <h1>{article.data.title}</h1>
+</MainLayout>

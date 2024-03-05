@@ -1,0 +1,49 @@
+---
+import { Image } from "astro:assets";
+import type { CollectionEntry } from "astro:content";
+import { formatDate } from "../utils";
+
+interface Props {
+  article: CollectionEntry<"blog">;
+}
+
+const { article } = Astro.props;
+---
+
+<section
+  class="relative inline-block w-full sm:w-auto cursor-pointer rounded-2xl"
+>
+  <a href={`/articles/${article.slug}`}>
+    <!-- Using images from public/Image/ folder probably not provide any optimization -->
+    <!-- <Image src="/images/image1.png" alt="Article Image" class="w-full h-auto rounded-2xl" width={600} height={350} /> -->
+    <Image
+      src={`/images/${article.data.image}`}
+      alt="Article Image"
+      class="w-full h-auto rounded-2xl"
+      width={600}
+      height={350}
+    />
+
+    <article
+      class="absolute inset-0 flex flex-col items-center justify-center bg-black opacity-80 hover:opacity-75 transition duration-300 ease-in-out text-white text-center rounded-2xl"
+    >
+      <section>
+        <h2 class="text-2xl font-semibold sm:text-3xl">
+          {article.data.title}
+        </h2>
+        <p class="text-xl mt-4">{formatDate(article.data.pubDate)}</p>
+
+        <!-- Tags with rounded border -->
+        <aside class="flex mt-4 justify-center">
+          {
+            article.data.tags.map((tag) => (
+              <span class="px-2 py-1 border text-white rounded-full text-xs mr-2">
+                {tag}
+              </span>
+            ))
+          }
+        </aside>
+      </section>
+    </article>
+  </a>
+</section>
