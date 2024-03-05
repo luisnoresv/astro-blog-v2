@@ -1,0 +1,17 @@
+---
+const name = "Luis";
+
+console.info("test page", name);
+
+const users = [
+  { name: "Luis", age: 38 },
+  { name: "Pierina", age: 34 },
+  { name: "Becky", age: 32 },
+];
+---
+
+<h1>Welcome {name} to the test page</h1>
+
+<ul>
+  {users.map((user) => <li>{user.name}</li>)}
+</ul>
