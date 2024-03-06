@@ -2,13 +2,13 @@
 import Navbar from "../components/Navbar.astro";
 import Footer from "../components/Footer.astro";
 
-import { SITE_TITLE, SITE_DESCRIPTION } from "../constants";
+import { SITE_TITLE, SITE_DESCRIPTION, DEFAULT_SITE_TITLE } from "../constants";
 
 interface Props {
   title?: string;
 }
 
-const { title = "Articles, Stories & Tutorials For Tech People" } = Astro.props;
+const { title = DEFAULT_SITE_TITLE } = Astro.props;
 ---
 
 <!doctype html>

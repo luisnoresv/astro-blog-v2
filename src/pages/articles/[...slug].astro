@@ -21,7 +21,7 @@ if (entry === undefined) {
 const { Content } = await entry?.render();
 ---
 
-<MainLayout>
+<MainLayout title={entry.data.title}>
   <section class="container mx-auto max-w-screen-lg mt-10 px-8">
     <BackLink path="articles" text="Back To Articles" />
     <article>
