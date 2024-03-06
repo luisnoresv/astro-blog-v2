@@ -13,12 +13,12 @@ const allBlogArticles = (await getCollection("blog")).sort(
 <MainLayout>
   <h1 class="text-2xl pb-3">All Articles</h1>
   <!-- Main Grid -->
-  <div class="grid grid-cols-1 gap-4 sm:grid-cols-2 lg:grid-cols-3">
+  <section class="grid grid-cols-1 gap-4 sm:grid-cols-2 lg:grid-cols-3">
     <!-- Article Card -->
     {allBlogArticles.map((article) => <ArticleCard article={article} />)}
-  </div>
+  </section>
   <!-- Pagination -->
-  <div class="flex justify-between mt-10">
+  <aside class="flex justify-between mt-10">
     <a
       href="#"
       class="inline-block bg-indigo-100 px-3 py-2 hover:bg-indigo-600 hover:text-white rounded-lg"
@@ -31,5 +31,5 @@ const allBlogArticles = (await getCollection("blog")).sort(
     >
       Next
     </a>
-  </div>
+  </aside>
 </MainLayout>

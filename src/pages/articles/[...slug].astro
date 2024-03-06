@@ -1,6 +1,7 @@
 ---
 // SSR example
 import { getEntry } from "astro:content";
+import BackLink from "../../components/BackLink.astro";
 import Tags from "../../components/Tags.astro";
 import MainLayout from "../../layouts/MainLayout.astro";
 import { formatDate } from "./../../utils";
@@ -21,11 +22,7 @@ const { Content } = await entry?.render();
 ---
 
 <MainLayout>
-  <a
-    href="/articles"
-    class="inline-block bg-gray-100 p-2 mb-6 hover:bg-indigo-500 hover:text-white"
-    >Back To Articles</a
-  >
+  <BackLink path="articles" text="Back To Articles" />
   <article>
     <h1 class="text-4xl font-bold mb-2">
       {entry.data.title}

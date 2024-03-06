@@ -22,23 +22,23 @@ const otherArticles: CollectionEntry<"blog">[] = allBlogArticles.slice(1);
 
 <MainLayout>
   <!-- Top Grid -->
-  <div class="grid grid-cols-1 gap-5 lg:grid-cols-2">
-    <div>
+  <section class="grid grid-cols-1 gap-5 lg:grid-cols-2">
+    <article>
       <h1 class="text-5xl font-bold mt-4 mb-8 leading-tight xl:text-6xl">
         Articles, Stories & Tutorials for Tech People
       </h1>
       <SearchForm />
-    </div>
+    </article>
     <!-- Most Recent Article -->
     <MostRecentArticleCard article={mostRecentArticle} />
-  </div>
+  </section>
 
   <!-- Main Grid -->
-  <div class="grid grid-cols-1 gap-4 sm:grid-cols-2 lg:grid-cols-3">
+  <section class="grid grid-cols-1 gap-4 sm:grid-cols-2 lg:grid-cols-3">
     {
       otherArticles
         .slice(0, HOMEPAGE_ARTICLE_LIMIT)
         .map((article) => <ArticleCard article={article} />)
     }
-  </div>
+  </section>
 </MainLayout>
