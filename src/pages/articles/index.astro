@@ -2,6 +2,7 @@
 import type { CollectionEntry } from "astro:content";
 import { getCollection } from "astro:content";
 import ArticleCard from "../../components/ArticleCard.astro";
+import SearchForm from "../../components/SearchForm.astro";
 import MainLayout from "../../layouts/MainLayout.astro";
 
 const allBlogArticles = (await getCollection("blog")).sort(
@@ -12,6 +13,7 @@ const allBlogArticles = (await getCollection("blog")).sort(
 
 <MainLayout>
   <h1 class="text-2xl pb-3">All Articles</h1>
+  <SearchForm />
   <!-- Main Grid -->
   <section class="grid grid-cols-1 gap-4 sm:grid-cols-2 lg:grid-cols-3">
     <!-- Article Card -->
