@@ -1,0 +1,27 @@
+---
+import { Image } from "astro:assets";
+import { type CollectionEntry } from "astro:content";
+
+type Props = {
+  author: CollectionEntry<"team">;
+};
+
+const { author } = Astro.props;
+---
+
+<div class="bg-white shadow-lg rounded-lg overflow-hidden">
+  <Image
+    src={author.data.headshot}
+    alt={author.data.name}
+    class="w-full h-auto"
+    format="avif"
+  />
+  <div class="p-6">
+    <h3 class="text-xl font-semibold text-gray-900 mb-2">
+      <a href={`/team/${author.id}`} class="hover:text-purple-500"
+        >{author.data.name}</a
+      >
+    </h3>
+    <p class="text-gray-70">{author.data.role}</p>
+  </div>
+</div>
