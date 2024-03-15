@@ -1,6 +1,6 @@
 ---
+import logo from "@images/logo.png";
 import { Image } from "astro:assets";
-import logo from "../images/logo.png";
 ---
 
 <nav class="bg-gray-900 text-white">
@@ -14,6 +14,8 @@ import logo from "../images/logo.png";
         width={55}
         height={55}
         alt="TechPeople Logo"
+        fetchpriority={"high"}
+        format="avif"
       />
       <span class="self-center text-2xl font-semibold whitespace-nowrap"
         ><span class="text-indigo-400">Tech</span>People</span
@@ -64,7 +66,7 @@ import logo from "../images/logo.png";
           <a
             href="/about"
             class="block py-2 px-3 text-white rounded md:p-0 hover:text-indigo-400"
-            >About</a
+            >About & Team</a
           >
         </li>
       </ul>

@@ -1,21 +1,32 @@
 ---
-import { Image } from "astro:assets";
-import MainLayout from "../layouts/MainLayout.astro";
+export const prerender = true;
 
-import about from "../images/about.jpg";
-import team1 from "../images/team1.png";
-import team2 from "../images/team2.png";
-import team3 from "../images/team3.png";
+import { Image } from "astro:assets";
+import type { CollectionEntry } from "astro:content";
+import { getCollection } from "astro:content";
+
+import ContentCreatorCard from "@components/ContentCreatorCard.astro";
+import TeamCard from "@components/TeamCard.astro";
+import MainLayout from "@layouts/MainLayout.astro";
+
+import about from "@images/about.jpg";
+import { ABOUT_TITLE } from "@lib/constants";
+
+const authors: CollectionEntry<"team">[] = await getCollection("team");
 ---
 
-<MainLayout title="About The TechPeople Blog">
+<MainLayout title={ABOUT_TITLE}>
   <h1 class="text-4xl font-bold mb-5">About TechPeople</h1>
-  <div class="flex flex-col md:flex-row items-center justify-between gap-6">
+  <div
+    class="flex flex-col md:flex-row items-center justify-between gap-6 mt-10"
+  >
     <div class="w-full md:w-1/2 mb-8 md:mb-0">
       <Image
         src={about}
         alt="Tech People Team"
         class="w-full h-auto rounded-lg shadow-lg"
+        fetchpriority={"high"}
+        format="avif"
       />
     </div>
     <div class="w-full md:w-1/2">
@@ -35,32 +46,29 @@ import team3 from "../images/team3.png";
   </div>
 
   <!-- Team -->
-  <div class="mt-10">
-    <h2 class="text-3xl font-extrabold text-gray-900 mb-8">Our Team</h2>
-    <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-8">
-      <div class="bg-white shadow-lg rounded-lg overflow-hidden">
-        <Image src={team1} alt="Team Member 1" class="w-full h-auto" />
-        <div class="p-6">
-          <h3 class="text-xl font-semibold text-gray-900 mb-2">John Doe</h3>
-          <p class="text-gray-70">Founder & Editor-in-Chief</p>
-        </div>
-      </div>
-      <div class="bg-white shadow-lg rounded-lg overflow-hidden">
-        <Image src={team2} alt="Team Member 2" class="w-full h-auto" />
-        <div class="p-6">
-          <h3 class="text-xl font-semibold text-gray-900 mb-2">Paul Newman</h3>
-          <p class="text-gray-70">Lead Writer</p>
-        </div>
-      </div>
-      <div class="bg-white shadow-lg rounded-lg overflow-hidden">
-        <Image src={team3} alt="Team Member 3" class="w-full h-auto" />
-        <div class="p-6">
-          <h3 class="text-xl font-semibold text-gray-900 mb-2">
-            Johanna Johnson
-          </h3>
-          <p class="text-gray-70">Tech Analyst</p>
-        </div>
-      </div>
-    </div>
+  <div class="mt-20">
+    <h2 class="text-3xl font-extrabold text-gray-900 mb-8 text-center">
+      Our Team
+    </h2>
+    <article class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-8">
+      {
+        authors
+          .filter((author) => author.data.hierarchy < 4)
+          .sort(
+            (author, nextAuthor) =>
+              author.data.hierarchy - nextAuthor.data.hierarchy,
+          )
+          .map((author) => <TeamCard author={author} />)
+      }
+    </article>
+  </div>
+  <div class="mt-20">
+    <article class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-8">
+      {
+        authors
+          .filter((author) => author.data.hierarchy === 4)
+          .map((author) => <ContentCreatorCard author={author} />)
+      }
+    </article>
   </div>
 </MainLayout>

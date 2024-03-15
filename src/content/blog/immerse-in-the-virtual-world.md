@@ -1,9 +1,9 @@
 ---
-title: 'Immerse in the Virtual World: VR Development'
+title: "Immerse in the Virtual World: VR Development"
 pubDate: 2024-01-18
-author: 'Michael Johnson'
-image: 'image3.png'
-tags: ['vr', 'gadgets', 'tech']
+author: michael-johnson
+image: "image3.png"
+tags: ["vr", "gadgets", "tech"]
 slug: immerse-in-the-virtual-world-vr-development
 ---
 
