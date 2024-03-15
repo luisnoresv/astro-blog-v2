@@ -1,4 +1,4 @@
-This repo was base on the Astro crash course from [Brad Traversy](https://github.com/bradtraversy). Follow Brad Traversy on his [youtube](https://www.youtube.com/@TraversyMedia) channel
+This repo was based on the Astro crash course from [Brad Traversy](https://github.com/bradtraversy). Follow Brad Traversy on his [youtube](https://www.youtube.com/@TraversyMedia) channel
 
 #### 🚀 Astro Quick Start Course: https://github.com/bradtraversy/astro-blog
 
