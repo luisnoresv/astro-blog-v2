@@ -1,10 +1,10 @@
 ---
 // SSR example
-import BackLink from "@components/BackLink.astro";
-import Tags from "@components/Tags.astro";
-import MainLayout from "@layouts/MainLayout.astro";
-import { formatDate } from "@lib/utils";
 import { getEntry } from "astro:content";
+import BackLink from "../../components/BackLink.astro";
+import Tags from "../../components/Tags.astro";
+import MainLayout from "../../layouts/MainLayout.astro";
+import { formatDate } from "./../../utils";
 
 const { slug } = Astro.params;
 
@@ -18,10 +18,6 @@ if (entry === undefined) {
   return Astro.redirect("/404");
 }
 
-const { author } = entry.data;
-
-const authorInformation = await getEntry("team", author.id);
-
 const { Content } = await entry?.render();
 ---
 
@@ -33,12 +29,7 @@ const { Content } = await entry?.render();
         {entry.data.title}
       </h1>
       <h3 class="text-lg mb-2">
-        Written by <a
-          href={`/team/${authorInformation.id}`}
-          class="font-bold hover:text-purple-500"
-          >{authorInformation.data.name}</a
-        >
-        on {formatDate(entry.data.pubDate)}
+        Written by {entry.data.author} on {formatDate(entry.data.pubDate)}
       </h3>
       <Tags tags={entry.data.tags} />
       <img

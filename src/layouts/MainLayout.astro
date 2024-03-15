@@ -1,17 +1,12 @@
 ---
-import { ViewTransitions } from "astro:transitions";
-import Navbar from "@components/Navbar.astro";
-import Footer from "@components/Footer.astro";
+import Navbar from "../components/Navbar.astro";
+import Footer from "../components/Footer.astro";
 
-import {
-  SITE_TITLE,
-  SITE_DESCRIPTION,
-  DEFAULT_SITE_TITLE,
-} from "../lib/constants";
+import { SITE_TITLE, SITE_DESCRIPTION, DEFAULT_SITE_TITLE } from "../constants";
 
-type Props = {
+interface Props {
   title?: string;
-};
+}
 
 const { title = DEFAULT_SITE_TITLE } = Astro.props;
 ---
@@ -28,16 +23,14 @@ const { title = DEFAULT_SITE_TITLE } = Astro.props;
       crossorigin="anonymous"
       referrerpolicy="no-referrer"></script>
     <title>{SITE_TITLE} - {title}</title>
-    <ViewTransitions />
   </head>
-  <body>
+  <body class="">
     <Navbar />
-    <main
-      transition:name="main"
-      class="container mx-auto max-w-screen-xl mt-10 px-8"
-    >
+
+    <section class="container mx-auto max-w-screen-xl mt-10 px-8">
       <slot />
-    </main>
+    </section>
+
     <Footer />
   </body>
 </html>

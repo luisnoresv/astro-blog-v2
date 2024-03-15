@@ -1,7 +1,7 @@
 ---
-import { capitalize } from "@lib/utils";
 import type { CollectionEntry } from "astro:content";
 import { getCollection } from "astro:content";
+import { capitalize } from "../utils";
 
 const allBlogArticles: CollectionEntry<"blog">[] = await getCollection("blog");
 

@@ -1,12 +1,12 @@
 ---
-import SearchForm from "@components/SearchForm.astro";
-import MainLayout from "@layouts/MainLayout.astro";
 import type { CollectionEntry } from "astro:content";
 import { getCollection } from "astro:content";
+import SearchForm from "../components/SearchForm.astro";
+import MainLayout from "../layouts/MainLayout.astro";
 
-import ArticleCard from "@components/ArticleCard.astro";
-import MostRecentArticleCard from "@components/MostRecentArticleCard.astro";
-import { DEFAULT_SITE_TITLE, HOMEPAGE_ARTICLE_LIMIT } from "@lib/constants";
+import ArticleCard from "../components/ArticleCard.astro";
+import MostRecentArticleCard from "../components/MostRecentArticleCard.astro";
+import { DEFAULT_SITE_TITLE, HOMEPAGE_ARTICLE_LIMIT } from "../constants";
 
 const allBlogArticles: CollectionEntry<"blog">[] = (
   await getCollection("blog")
