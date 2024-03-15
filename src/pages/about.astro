@@ -1,11 +1,13 @@
 ---
+export const prerender = true;
+
 import { Image } from "astro:assets";
 import type { CollectionEntry } from "astro:content";
 import { getCollection } from "astro:content";
 
-import MainLayout from "@layouts/MainLayout.astro";
-import TeamCard from "@components/TeamCard.astro";
 import ContentCreatorCard from "@components/ContentCreatorCard.astro";
+import TeamCard from "@components/TeamCard.astro";
+import MainLayout from "@layouts/MainLayout.astro";
 
 import about from "@images/about.jpg";
 import { ABOUT_TITLE } from "@lib/constants";

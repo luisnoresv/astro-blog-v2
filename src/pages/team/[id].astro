@@ -4,47 +4,48 @@
  */
 export const prerender = true;
 
-import BackLink from "@components/BackLink.astro";
-import MainLayout from "@layouts/MainLayout.astro";
 import { Image } from "astro:assets";
 import type { CollectionEntry } from "astro:content";
 import { getCollection } from "astro:content";
 
-export async function getStaticPaths() {
-  const authors: CollectionEntry<"team">[] = await getCollection("team");
+import BackLink from "@components/BackLink.astro";
+import MainLayout from "@layouts/MainLayout.astro";
 
-  return authors.map((author) => ({
+export async function getStaticPaths() {
+  const teamMembers: CollectionEntry<"team">[] = await getCollection("team");
+
+  return teamMembers.map((member) => ({
     params: {
-      id: author.id,
+      id: member.id,
     },
     props: {
-      author,
+      member,
     },
   }));
 }
 
-const { author } = Astro.props;
+const { member } = Astro.props;
 ---
 
-<MainLayout title={author.data.name}>
+<MainLayout title={member.data.name}>
   <section class="container mx-auto max-w-screen-lg mt-10 px-8">
     <BackLink path="about" text="Back To Team" />
     <section class="md:flex flex-col items-center">
       <Image
-        src={author.data.headshot}
-        alt={author.data.name}
+        src={member.data.headshot}
+        alt={member.data.name}
         class="h-96 w-auto rounded-xl mb-6"
       />
       <h1 class="text-4xl font-bold mb-2">
-        {author.data.name}
+        {member.data.name}
       </h1>
-      <p class="text-base text-gray-600">{author.data.role}</p>
+      <p class="text-base text-gray-600">{member.data.role}</p>
     </section>
     <article class="mt-12 text-justify">
-      {author.data.bio}
+      {member.data.bio}
     </article>
     <aside class="mt-4">
-      <p><strong>Contact Information:</strong> {author.data.email}</p>
+      <p><strong>Contact Information:</strong> {member.data.email}</p>
     </aside>
   </section>
 </MainLayout>
