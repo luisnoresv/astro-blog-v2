@@ -1,11 +1,11 @@
 ---
-import ArticleCard from "@components/ArticleCard.astro";
-import Pagination from "@components/Pagination.astro";
-import SearchForm from "@components/SearchForm.astro";
-import MainLayout from "@layouts/MainLayout.astro";
-import { ARTICLES_PER_PAGE } from "@lib/constants";
 import type { CollectionEntry } from "astro:content";
 import { getCollection } from "astro:content";
+import ArticleCard from "../../components/ArticleCard.astro";
+import Pagination from "../../components/Pagination.astro";
+import SearchForm from "../../components/SearchForm.astro";
+import { ARTICLES_PER_PAGE } from "../../constants";
+import MainLayout from "../../layouts/MainLayout.astro";
 
 const currentPage: number | null = +Astro.url.searchParams.get("page")! || 1;
 
