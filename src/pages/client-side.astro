@@ -1,0 +1,9 @@
+---
+import { FeedbackWrapper } from "@components/client-side/react/feedback-wrapper";
+import MainLayout from "@layouts/MainLayout.astro";
+---
+
+<MainLayout>
+  <h1 class="text-3xl font-bold mb-5">Feedback from our beloved Community</h1>
+  <FeedbackWrapper client:load />
+</MainLayout>

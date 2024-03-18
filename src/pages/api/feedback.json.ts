@@ -41,35 +41,40 @@ type FeedbackRequest = {
 
 export const POST: APIRoute = async ({ request }): Promise<Response> => {
   try {
-    const { author, body }: FeedbackRequest = await request.json();
+    if (request.headers.get("Content-Type") === "application/json") {
+      const { author, body }: FeedbackRequest = await request.json();
 
-    if (!author || author.length === 0 || !body || body.length === 0) {
+      if (!author || author.length === 0 || !body || body.length === 0) {
+        return new Response(
+          JSON.stringify({
+            message: "Please provide all required fields",
+            success: false,
+          }),
+          { status: 400 },
+        );
+      }
+
+      const newFeedback = await db
+        .insert(Feedback)
+        .values({
+          author: sanitize(author),
+          body: sanitize(body),
+        })
+        .returning();
+
       return new Response(
-        JSON.stringify({
-          message: "Please provide all required fields",
-          success: false,
-        }),
-        { status: 400 },
+        JSON.stringify({ feedback: newFeedback[0], success: true }),
+        {
+          status: 200,
+          headers: {
+            "content-type": "application/json",
+          },
+        },
       );
     }
-
-    const newFeedback = await db
-      .insert(Feedback)
-      .values({
-        author: sanitize(author),
-        body: sanitize(body),
-      })
-      .returning();
-
-    return new Response(
-      JSON.stringify({ feedback: newFeedback, success: true }),
-      {
-        status: 200,
-        headers: {
-          "content-type": "application/json",
-        },
-      },
-    );
+    return new Response(JSON.stringify({ success: false }), {
+      status: 400,
+    });
   } catch (error) {
     return new Response(JSON.stringify({ error, success: false }), {
       status: 500,
