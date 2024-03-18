@@ -38,7 +38,7 @@ export function FeedbackWrapper() {
 
   return (
     <section className="mt-2 flex flex-col flex-wrap gap-5 h-full w-full">
-      <code className='text-sm text-slate-600'>This is a client-side component</code>
+      <code className='text-sm text-slate-600'>This is a client-side ReactJS component</code>
       <Suspense fallback={<Loading />}>
         <FeedbackList feedbacks={feedbacks} />
       </Suspense>

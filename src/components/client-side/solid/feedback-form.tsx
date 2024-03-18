@@ -36,6 +36,7 @@ export function FeedbackForm({ feedbacks, onSetFeedbacks }: Props) {
     });
 
     const { feedback } = await response.json();
+    console.info('FeedbackForm - feedback', feedback);
     // Optimistic Update
     // onSetFeedbacks([...feedbacks, { _id: feedbacks.length + 1, author, body, postedDate: new Date() }]);
     onSetFeedbacks([...feedbacks, feedback]);
