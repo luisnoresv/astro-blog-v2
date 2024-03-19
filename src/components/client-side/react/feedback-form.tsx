@@ -39,7 +39,6 @@ export function FeedbackForm({ feedbacks, onSetFeedbacks }: Props) {
     // Optimistic Update
     // onSetFeedbacks([...feedbacks, { _id: feedbacks.length + 1, author, body, postedDate: new Date() }]);
     onSetFeedbacks([...feedbacks, feedback]);
-    // console.info('formData', { author, body })
     formRef.current?.reset();
   };
 

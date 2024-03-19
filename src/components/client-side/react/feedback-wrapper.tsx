@@ -25,7 +25,7 @@ export function FeedbackWrapper() {
         const response = await fetch('/api/feedback.json');
         if (response.ok) {
           const data = await response.json();
-          setFeedbacks(data.feedback);
+          setFeedbacks(data.feedbacks);
         }
 
       } catch (error) {

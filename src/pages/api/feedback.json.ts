@@ -4,9 +4,9 @@ import sanitize from "sanitize-html";
 
 export const GET: APIRoute = async (): Promise<Response> => {
   try {
-    const feedback = await db.select().from(Feedback);
+    const feedbacks = await db.select().from(Feedback);
 
-    if (!feedback) {
+    if (!feedbacks) {
       return new Response(
         JSON.stringify({ error: "The table has no values", success: false }),
         {
@@ -18,7 +18,7 @@ export const GET: APIRoute = async (): Promise<Response> => {
       );
     }
 
-    return new Response(JSON.stringify({ feedback, success: true }), {
+    return new Response(JSON.stringify({ feedbacks, success: true }), {
       status: 200,
       headers: {
         "content-type": "application/json",
