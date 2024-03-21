@@ -10,7 +10,7 @@ const tags: string[] = allBlogArticles.flatMap((article) => article.data.tags);
 const uniqueTags: string[] = [...new Set(tags)];
 ---
 
-<footer class="bg-indigo-900 text-white">
+<footer class="bg-indigo-900 text-white" aria-label="Footer">
   <div class="container mx-auto mt-10 max-w-screen-xl px-8">
     <div class="grid grid-cols-1 gap-12 sm:grid-cols-2 lg:grid-cols-4">
       <div class="mt-10">

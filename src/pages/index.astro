@@ -34,7 +34,10 @@ const otherArticles: CollectionEntry<"blog">[] = allBlogArticles.slice(1);
   </section>
 
   <!-- Main Grid -->
-  <section class="grid grid-cols-1 gap-4 sm:grid-cols-2 lg:grid-cols-3">
+  <section
+    aria-label="Other articles"
+    class="grid grid-cols-1 gap-4 sm:grid-cols-2 lg:grid-cols-3"
+  >
     {
       otherArticles
         .slice(0, HOMEPAGE_ARTICLE_LIMIT)
